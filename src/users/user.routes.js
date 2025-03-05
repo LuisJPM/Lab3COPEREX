@@ -9,11 +9,19 @@ import { tieneRole } from "../middlewares/validar-roles.js";
 const router = Router();
 
 // Ruta para obtener todos los usuarios
-router.get("/", getUsers);
+router.get(
+    "/",
+    [
+        validarJWT,
+        tieneRole("ADMIN_ROLE", "CLIENT_ROLE"), // Restringir el acceso a roles específicos
+        validarCampos
+    ],
+    getUsers
+);
 
 // Ruta para obtener un usuario por ID
 router.get(
-    "/findUser/:id",
+    "/:id",
     [
         validarJWT,
         tieneRole("ADMIN_ROLE"),
@@ -39,12 +47,13 @@ router.put(
 
 // Ruta para actualizar la contraseña de un usuario
 router.put(
-    "/updatePassword/:id",
+    "/:id/password",
     [
         validarJWT,
         tieneRole("ADMIN_ROLE"),
         check("id", "ID no válido!").isMongoId(),
         check("id").custom(existeUsuarioById),
+        check("password", "La contraseña debe tener al menos 8 caracteres!").isLength({ min: 8 }),
         validarCampos
     ],
     updatePassword
@@ -52,12 +61,13 @@ router.put(
 
 // Ruta para actualizar el estado de un usuario (activo/inactivo)
 router.put(
-    "/updateStatus/:id",
+    "/:id/status",
     [
         validarJWT,
         tieneRole("ADMIN_ROLE"),
         check("id", "ID no válido!").isMongoId(),
         check("id").custom(existeUsuarioById),
+        check("estado", "El campo 'estado' debe ser un booleano!").isBoolean(),
         validarCampos
     ],
     updateStatus

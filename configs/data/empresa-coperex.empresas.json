@@ -1,0 +1,24 @@
+{
+  "empresas": [
+    {
+      "id": 1,
+      "nombre": "Empresa de Luis Pérez",
+      "nivelImpacto": "Alto",
+      "aniosTrayectoria": 10,
+      "categoria": "Tecnología",
+      "descripcion": "Una empresa de tecnología.",
+      "contacto": "contacto@luisperez.com",
+      "estado": true
+    },
+    {
+      "id": 2,
+      "nombre": "Otra Empresa de Luis",
+      "nivelImpacto": "Medio",
+      "aniosTrayectoria": 5,
+      "categoria": "Salud",
+      "descripcion": "Empresa especializada en salud.",
+      "contacto": "contacto@otraempresa.com",
+      "estado": true
+    }
+  ]
+}

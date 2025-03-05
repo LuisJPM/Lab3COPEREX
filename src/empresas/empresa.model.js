@@ -1,57 +1,39 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";  // Importar Schema y model desde mongoose
 
-const EmpresaSchema = Schema({
+const EmpresaSchema = new Schema({
     nombre: {
         type: String,
         required: [true, "El nombre de la empresa es obligatorio!"],
-        maxlength: [100, "El nombre debe tener un máximo de 100 caracteres!"],
     },
-
     nivelImpacto: {
         type: String,
         required: [true, "El nivel de impacto es obligatorio!"],
-        enum: ["Bajo", "Medio", "Alto"], // Puedes definir un conjunto de opciones para el nivel de impacto.
+        enum: ["Bajo", "Medio", "Alto"],
     },
-
     aniosTrayectoria: {
         type: Number,
         required: [true, "Los años de trayectoria son obligatorios!"],
-        min: [0, "La trayectoria no puede ser menor que 0 años!"], 
     },
-
     categoria: {
         type: String,
         required: [true, "La categoría empresarial es obligatoria!"],
-        enum: ["Tecnología", "Salud", "Educación", "Retail", "Finanzas"], // Un conjunto de categorías predefinidas.
+        enum: ["Tecnología", "Salud", "Educación", "Retail", "Finanzas"],
     },
-
     descripcion: {
         type: String,
-        maxlength: [500, "La descripción debe tener un máximo de 500 caracteres!"], // Descripción adicional sobre la empresa
+        maxlength: [500, "La descripción debe tener un máximo de 500 caracteres!"],
     },
-
     contacto: {
         type: String,
         required: [true, "El contacto es obligatorio!"],
-        maxlength: [100, "El contacto debe tener un máximo de 100 caracteres!"],
     },
-
     estado: {
         type: Boolean,
-        default: true, // Estado activo o inactivo
+        default: true,
     },
-
 }, {
-    timestamps: true,  // Esto agregará los campos 'createdAt' y 'updatedAt' automáticamente
-    versionKey: false, // Desactivar la clave __v
+    timestamps: true,  // Agrega campos createdAt y updatedAt automáticamente
+    versionKey: false, // Desactiva la propiedad __v en los documentos
 });
 
-// Método para personalizar la respuesta cuando convertimos el objeto a JSON (opcional)
-EmpresaSchema.methods.toJSON = function () {
-    const { _v, _id, ...empresa } = this.toObject();
-    empresa.uid = _id;  // Se le asigna un campo uid en lugar de _id
-    return empresa;
-}
-
-export default model('Empresa', EmpresaSchema);
-
+export default model('Empresa', EmpresaSchema);  // Exportar el modelo

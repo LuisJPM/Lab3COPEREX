@@ -1,0 +1,45 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-0000-4000-8000-000000000001",
+    "name": "AUTH - Luis Pérez",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"luis@example.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3004/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Registro",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Luis Pérez\",\n  \"email\": \"luis@example.com\",\n  \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3004/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["auth", "register"]
+        }
+      }
+    }
+  ]
+}

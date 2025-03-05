@@ -1,0 +1,41 @@
+{
+  "info": {
+    "_postman_id": "b2c3d4e5-0000-4000-8000-000000000002",
+    "name": "EMPRESAS - Luis Pérez",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Obtener todas las empresas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3004/empresas",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["empresas"]
+        }
+      }
+    },
+    {
+      "name": "Crear una nueva empresa",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Empresa de Luis Pérez\",\n  \"nivelImpacto\": \"Alto\",\n  \"aniosTrayectoria\": 10,\n  \"categoria\": \"Tecnología\",\n  \"descripcion\": \"Una empresa de tecnología\",\n  \"contacto\": \"contacto@luisperez.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3004/empresas",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3004",
+          "path": ["empresas"]
+        }
+      }
+    }
+  ]
+}

@@ -1,16 +1,19 @@
-import Role from '../role/role.model.js';
 import User from '../users/user.model.js';
-import Product from "../products/product.model.js";
-import Category from '../categories/category.model.js';
-import Factura from '../facturas/factura.model.js';
+import Empresa from '../empresas/empresa.model.js';
 
-export const esRoleValido = async (role = ' ') => {
-    const existeRol = await Role.findOne({ role });
+export const empresaExiste = async (id = '') => {
+    const existeEmpresa = await Empresa.findById(id);
 
-    if (!existeRol) {
-        throw new Error(`Role ${role} does not exist in the database!`);
+    if (!existeEmpresa) {
+        throw new Error(`La empresa con id ${id} no existe!`);
     }
-}
+};
+export const esRoleValido = (role = '') => {
+    if (role !== 'ADMIN_ROLE') {
+        throw new Error('Solo los administradores pueden acceder al sistema.');
+    }
+    return true;
+};
 
 export const existenteEmail = async (email = ' ') => {
     const existeEmail = await User.findOne({ email });
@@ -24,38 +27,6 @@ export const existeUsuarioById = async (id = '') => {
     const existeUsuario = await User.findById(id);
 
     if (!existeUsuario) {
-        throw new Error(`id ${id} does not exist!`);
-    }
-}
-
-export const existeProductById = async (id = '') => {
-    const existeProduct = await Product.findById(id);
-
-    if (!existeProduct) {
-        throw new Error(`id ${id} does not exist!`);
-    }
-}
-
-export const existeProductByName = async (name = '') => {
-    const existeProduct = await Product.findOne({ name });
-
-    if (!existeProduct) {
-        throw new Error(`name ${name} does not exist!`);
-    }
-}
-
-export const existeCategoryById = async (id = '') => {
-    const existeCategory = await Category.findById(id);
-
-    if (!existeCategory) {
-        throw new Error(`id ${id} does not exist!`);
-    }
-}
-
-export const existeFacturaById = async (id = '') => {
-    const existeFactura = await Factura.findById(id);
-
-    if (!existeFactura) {
         throw new Error(`id ${id} does not exist!`);
     }
 }

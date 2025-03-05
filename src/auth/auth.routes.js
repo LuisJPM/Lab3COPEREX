@@ -1,24 +1,19 @@
 import { Router } from 'express';
-import { empresaLogin, empresaRegistration } from './auth.controller.js';
-import { agregarEmpresaValidator, editarEmpresaValidator } from '../middlewares/empresa-validator.js'; // Asumo que ya tienes los validadores específicos para empresas
-import { removeFileOnFailure } from '../middlewares/delete-file-on-error.js';
+import { empresaLogin, empresaRegistration } from './auth.controller.js'; // Importar controladores
+import { loginEmpresaValidator, registroEmpresaValidator } from '../middlewares/empresa-validator.js'; // Importar validadores
 
 const authRouter = Router();
 
-// Ruta para login de empresa
 authRouter.post(
     '/login',
-    agregarEmpresaValidator, // Aquí puede ir el validador de login si fuera necesario
-    removeFileOnFailure,
-    empresaLogin
+    loginEmpresaValidator,
+    empresaLogin 
 );
 
-// Ruta para registro de empresa
 authRouter.post(
     '/register',
-    agregarEmpresaValidator, // Aquí puede ir el validador de registro si fuera necesario
-    removeFileOnFailure,
-    empresaRegistration
+    registroEmpresaValidator, 
+    empresaRegistration 
 );
 
 export default authRouter;
